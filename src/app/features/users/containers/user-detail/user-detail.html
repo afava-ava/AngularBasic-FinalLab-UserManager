@@ -1,0 +1,46 @@
+<div class="p-6 max-w-xl mx-auto bg-white shadow rounded">
+  <div class="flex items-center mb-4">
+    <a
+      routerLink="/"
+      class="inline-flex items-center px-4 bg-gray-200 text-gray-700 rounded-xl shadow hover:bg-gray-300 transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="w-5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back
+    </a>
+    <h1 class="ml-5 pb-0.5 text-2xl font-bold">User Details</h1>
+  </div>
+
+  @if(userSignal()){
+  <div class="flex flex-col">
+    <img
+      [src]="userSignal()!.avatar"
+      alt="Avatar"
+      class="inline-flex py-1 w-24 h-24 rounded-full mx-auto mb-4"
+    />
+    <div class="inline-flex py-1">
+      <label class="font-semibold">First name:</label>
+      <p class="px-2">{{ userSignal()!.firstName }}</p>
+    </div>
+
+    <div class="inline-flex py-1">
+      <label class="font-semibold">Last name:</label>
+      <p class="px-2">{{ userSignal()!.lastName }}</p>
+    </div>
+
+    <div class="inline-flex py-1">
+      <label class="font-semibold">Email:</label>
+      <p class="px-2">{{ userSignal()!.email }}</p>
+    </div>
+  </div>
+  } @else {
+  <p>This user does not exist...</p>
+  }
+</div>

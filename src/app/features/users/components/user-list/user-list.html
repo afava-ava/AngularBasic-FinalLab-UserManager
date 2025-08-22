@@ -1,1 +1,16 @@
-<p>user-list works!</p>
+<div class="p-6">
+  <!-- Container with horizontal scroll for small screens -->
+  <div class="overflow-x-auto border rounded-lg shadow max-w-md">
+    <!-- Header row -->
+    <div class="grid grid-cols-1 text-sm font-medium text-gray-600 bg-gray-100">
+      <div class="px-4 py-2">List of users</div>
+    </div>
+
+    <!-- Task rows -->
+    <div class="inline-block divide-y divide-gray-200">
+      @for (user of users; track user.id) {
+        <app-user-list-item [user]="user"></app-user-list-item>
+      }
+    </div>
+  </div>
+</div>
