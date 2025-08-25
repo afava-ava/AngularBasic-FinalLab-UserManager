@@ -1,20 +1,47 @@
 <div class="max-w-md mx-auto mt-6 p-6 border rounded-lg shadow">
-  <h2 class="text-xl font-semibold mb-4">Add New User</h2>
-
+  <div class="flex items-center mb-4">
+    <a
+      routerLink="/"
+      class="inline-flex items-center px-4 bg-gray-200 text-gray-700 rounded-xl shadow hover:bg-gray-300 transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="w-5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back
+    </a>
+    <h2 class="ml-5 pb-0.5 text-2xl font-bold">Add New User</h2>
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
     <div>
       <label class="block mb-1">First Name</label>
       <input formControlName="firstName" class="border rounded w-full px-2 py-1" />
+      @if (firstName?.errors?.['required']) {
+      <div class="text-red-500 text-sm">First Name is required</div>
+      }
     </div>
 
     <div>
       <label class="block mb-1">Last Name</label>
       <input formControlName="lastName" class="border rounded w-full px-2 py-1" />
+      @if (lastName?.errors?.['required']) {
+      <div class="text-red-500 text-sm">Last Name is required</div>
+      }
     </div>
 
     <div>
       <label class="block mb-1">Email</label>
       <input formControlName="email" type="email" class="border rounded w-full px-2 py-1" />
+      @if (email?.errors?.['required']) {
+      <div class="text-red-500 text-sm">Email is required</div>
+      } @if (email?.errors?.['email']) {
+      <div class="text-red-500 text-sm">Email is invalid</div>
+      }
     </div>
 
     <div>

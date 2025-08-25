@@ -35,4 +35,13 @@ export class UserApi {
   private generateNextId(): number {
     return this.mockUsers.length > 0 ? Math.max(...this.mockUsers.map(u => u.id)) + 1 : 1;
   }
+
+  deleteUser(id: number): Observable<boolean> {
+    const index = this.mockUsers.findIndex(user => user.id === id);
+    if (index !== -1) {
+      this.mockUsers.splice(index, 1);
+      return of(true);
+    }
+    return of(false);
+  }
 }

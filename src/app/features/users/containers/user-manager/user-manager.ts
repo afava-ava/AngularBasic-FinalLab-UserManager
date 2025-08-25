@@ -9,7 +9,7 @@ import { UserApi } from '../../services/user-api';
   selector: 'app-user-manager',
   imports: [UserList, AsyncPipe],
   template:`
-  <app-user-list [users]="(users$ | async) ?? []"></app-user-list>
+  <app-user-list [users]="(users$ | async) ?? []" (deleteUser)="onDeleteUser($event)"></app-user-list>
   `
 
 })
@@ -20,4 +20,14 @@ export class UserManager implements OnInit{
   ngOnInit(){
     this.users$ = this.usersApi.getUsers();
   }
+
+  onDeleteUser(id: number) {
+    this.usersApi.deleteUser(id).subscribe(success => {
+      if (success) {
+        alert("User deleted successfully ✅");
+      } else {
+        alert("❌ Failed to delete user");
+      }
+    });
+  } 
 }

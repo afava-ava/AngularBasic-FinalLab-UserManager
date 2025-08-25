@@ -10,5 +10,10 @@ import { UserListItem } from '../user-list-item/user-list-item';
 })
 export class UserList {
   @Input() users: User[] = [];
-  @Output() addUser = new EventEmitter<any>();
+  @Output() onAddUser = new EventEmitter<any>();
+  @Output() deleteUser = new EventEmitter<number>();
+
+  onDeleteUser(id: number) {
+    this.deleteUser.emit(id);
+  }
 }

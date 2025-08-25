@@ -1,3 +1,22 @@
-<div class="grid grid-cols-1">
-    <a routerLink="/users/{{ user.id }}" class="no-underline hover:underline px-4 py-2 font-semibold text-gray-800">{{ user.firstName + ' ' + user.lastName | fullName }}</a>
+<div class="flex items-center px-4 py-2">
+  <a
+    routerLink="/users/{{ user.id }}"
+    class="no-underline hover:underline font-semibold text-gray-800"
+  >
+    {{ user.firstName + ' ' + user.lastName | fullName }}
+  </a>
+  <button
+    type="button"
+    (click)="onDelete()"
+    class="cursor-pointer ml-1.5 text-red-500 hover:text-red-700 transition"
+    title="Delete user"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        fill-rule="evenodd"
+        d="M6 8a1 1 0 011-1h6a1 1 0 011 1v7a2 2 0 01-2 2H8a2 2 0 01-2-2V8zM4 5h12a1 1 0 100-2h-3.5l-.71-.71A1 1 0 0010 2H8.21a1 1 0 00-.7.29L6.8 3H4a1 1 0 100 2z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
 </div>

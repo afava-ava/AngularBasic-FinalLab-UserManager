@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FullNamePipe } from "../../../shared/pipes/fullName.pipe";
 import { User } from '../../models/user';
@@ -10,4 +10,10 @@ import { User } from '../../models/user';
 })
 export class UserListItem {
   @Input() user!: User; 
+  @Output() delete = new EventEmitter<number>();
+
+  onDelete(){
+    this.delete.emit(this.user.id);
+  }
+
 }
