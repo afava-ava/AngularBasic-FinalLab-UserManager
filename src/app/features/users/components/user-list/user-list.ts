@@ -10,6 +10,7 @@ import { UserListItem } from '../user-list-item/user-list-item';
 })
 export class UserList {
   @Input() users: User[] = [];
+  @Input() isMock = false;
   @Output() onAddUser = new EventEmitter<any>();
   @Output() deleteUser = new EventEmitter<number>();
 

@@ -4,18 +4,24 @@
     <!-- Header row -->
     <div class="flex justify-between items-center font-medium text-gray-800 bg-gray-100 px-4 py-2">
       <h2 class="text-lg">List of users</h2>
+      @if(isMock){
       <a
         routerLink="/users/add"
         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded"
       >
         + Add User
       </a>
+      }
     </div>
 
     <!-- Task rows -->
     <div class="inline-block divide-y divide-gray-200">
       @for (user of users; track user.id) {
-      <app-user-list-item [user]="user" (delete)="onDeleteUser($event)"></app-user-list-item>
+      <app-user-list-item
+        [user]="user"
+        [isMockVersion]="isMock"
+        (delete)="onDeleteUser($event)"
+      ></app-user-list-item>
       }
     </div>
   </div>

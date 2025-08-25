@@ -10,9 +10,9 @@ export class FullNamePipe implements PipeTransform {
       return '';
     }
 
-    const splitFullname = value.split(' ');
+    const splitFullname = value.split(';');
 
-    const capitalizesplitFullName = splitFullname.map(chunk => 
+    const capitalizeSplitFullName = splitFullname.map(chunk => 
       {
         if (chunk.length > 0) {
         return chunk.charAt(0).toUpperCase() + chunk.slice(1);
@@ -20,7 +20,7 @@ export class FullNamePipe implements PipeTransform {
         return '';
       });
 
-    return capitalizesplitFullName.join(' ');
+    return capitalizeSplitFullName.join(' ');
   }
 
 }

@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 })
 export class UserListItem {
   @Input() user!: User; 
+  @Input() isMockVersion = false;
   @Output() delete = new EventEmitter<number>();
 
   onDelete(){

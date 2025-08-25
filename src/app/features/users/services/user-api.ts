@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { mapApiUser } from '../mappers/user-mapper';
 import { User } from '../models/user';
+import { UserSettings } from './user-settings';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +17,29 @@ export class UserApi {
   ];
 
   http = inject(HttpClient);
+  userSettings = inject(UserSettings);
 
-  getUsers(): Observable<User[]> {
-    return of(this.mockUsers);
+  getRealUsers(): Observable<User[]> {
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
+                .pipe(
+                  map(users => users.map(mapApiUser))
+                );
+  }
+
+  getUsers(): User[] {
+    return this.mockUsers;
   }
 
   getUserById(id: number): Observable<User | undefined> {
-    const user = this.mockUsers.find(user => user.id === id);
-    return of(user);
+    if (this.userSettings.useMock()) {
+      const user = this.mockUsers.find(user => user.id === id);
+      return of(user);
+    }
+
+    return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
+                .pipe(
+                  map(mapApiUser)
+                );
   }
 
   addUser(newUser: Omit<User, 'id'>): Observable<User> {
