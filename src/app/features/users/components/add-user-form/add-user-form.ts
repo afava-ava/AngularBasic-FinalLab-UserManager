@@ -1,31 +1,31 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-user-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, RouterLink],
   templateUrl: './add-user-form.html'
 })
 export class AddUserForm {
   @Output() save = new EventEmitter<any>();
+  
+  user = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    avatar: ''
+  }
 
-  fb = inject(FormBuilder);
-
-  form = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    avatar: ['']
-  });
-
-  get firstName() { return this.form.get('firstName'); }
-  get lastName() { return this.form.get('lastName'); }
-  get email() { return this.form.get('email'); }
-
-  onSubmit() {
-    if (this.form.valid) {
-      this.save.emit(this.form.value);
+  onSubmit(form: any) {
+    if (form.valid) {
+      this.save.emit(this.user);
+      this.user = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        avatar: ''
+      };
     }
   }
 }

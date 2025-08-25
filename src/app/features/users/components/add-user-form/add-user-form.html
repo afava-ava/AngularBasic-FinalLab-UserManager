@@ -17,10 +17,16 @@
     </a>
     <h2 class="ml-5 pb-0.5 text-2xl font-bold">Add New User</h2>
   </div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="space-y-4">
     <div>
       <label class="block mb-1">First Name</label>
-      <input formControlName="firstName" class="border rounded w-full px-2 py-1" />
+      <input
+        name="firstName"
+        [(ngModel)]="user.firstName"
+        required
+        #firstName="ngModel"
+        class="border rounded w-full px-2 py-1"
+      />
       @if (firstName?.errors?.['required']) {
       <div class="text-red-500 text-sm">First Name is required</div>
       }
@@ -28,7 +34,13 @@
 
     <div>
       <label class="block mb-1">Last Name</label>
-      <input formControlName="lastName" class="border rounded w-full px-2 py-1" />
+      <input
+        name="lastName"
+        [(ngModel)]="user.lastName"
+        required
+        #lastName="ngModel"
+        class="border rounded w-full px-2 py-1"
+      />
       @if (lastName?.errors?.['required']) {
       <div class="text-red-500 text-sm">Last Name is required</div>
       }
@@ -36,7 +48,15 @@
 
     <div>
       <label class="block mb-1">Email</label>
-      <input formControlName="email" type="email" class="border rounded w-full px-2 py-1" />
+      <input
+        name="email"
+        [(ngModel)]="user.email"
+        required
+        email="true"
+        type="email"
+        #email="ngModel"
+        class="border rounded w-full px-2 py-1"
+      />
       @if (email?.errors?.['required']) {
       <div class="text-red-500 text-sm">Email is required</div>
       } @if (email?.errors?.['email']) {
@@ -46,10 +66,14 @@
 
     <div>
       <label class="block mb-1">Avatar URL (optional)</label>
-      <input formControlName="avatar" class="border rounded w-full px-2 py-1" />
+      <input name="avatar" [(ngModel)]="user.avatar" class="border rounded w-full px-2 py-1" />
     </div>
 
-    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+    <button
+      type="submit"
+      [disabled]="form.invalid"
+      class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+    >
       Save
     </button>
   </form>
