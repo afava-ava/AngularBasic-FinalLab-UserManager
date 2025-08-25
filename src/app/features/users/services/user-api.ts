@@ -25,45 +25,14 @@ export class UserApi {
     return of(user);
   }
 
-  // /** Create new user */
-  // addUser(newUser: User, useMock: boolean = true): void {
-  //   if (useMock) {
-  //     newUser.id = this.generateNextId();
-  //     this.mockUsers.push(newUser);
-  //     this.users.set([...this.mockUsers]); // update signal
-  //   } else {
-  //     this.http.post<User>('/api/users', newUser).subscribe(user => {
-  //       this.users.update(users => [...users, user]);
-  //     });
-  //   }
-  // }
+  addUser(newUser: Omit<User, 'id'>): Observable<User> {
+    const nextId = this.generateNextId();
+    const createdUser: User = { id: nextId, ...newUser };
+    this.mockUsers.push(createdUser);
+    return of(createdUser);
+  }
 
-  // /** Update existing user */
-  // updateUser(updatedUser: User, useMock: boolean = true): void {
-  //   if (useMock) {
-  //     this.mockUsers = this.mockUsers.map(u => u.id === updatedUser.id ? updatedUser : u);
-  //     this.users.set([...this.mockUsers]);
-  //   } else {
-  //     this.http.put<User>(`/api/users/${updatedUser.id}`, updatedUser).subscribe(user => {
-  //       this.users.update(users => users.map(u => u.id === user.id ? user : u));
-  //     });
-  //   }
-  // }
-
-  // /** Delete user */
-  // deleteUser(id: number, useMock: boolean = true): void {
-  //   if (useMock) {
-  //     this.mockUsers = this.mockUsers.filter(u => u.id !== id);
-  //     this.users.set([...this.mockUsers]);
-  //   } else {
-  //     this.http.delete(`/api/users/${id}`).subscribe(() => {
-  //       this.users.update(users => users.filter(u => u.id !== id));
-  //     });
-  //   }
-  // }
-
-  // /** Helper to generate next ID */
-  // private generateNextId(): number {
-  //   return this.mockUsers.length > 0 ? Math.max(...this.mockUsers.map(u => u.id)) + 1 : 1;
-  // }
+  private generateNextId(): number {
+    return this.mockUsers.length > 0 ? Math.max(...this.mockUsers.map(u => u.id)) + 1 : 1;
+  }
 }
