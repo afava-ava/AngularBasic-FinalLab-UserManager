@@ -1,4 +1,4 @@
-# AngularBasic-FinalLab-UserManager
+# AngularBasic FinalLab UserManager
 
 A simple Angular application for managing users. This project demonstrates basic CRUD operations using mock data and integrates with a public API for real user data. It is designed as a learning exercise for Angular fundamentals.
 
@@ -73,13 +73,3 @@ A simple Angular application for managing users. This project demonstrates basic
 | DELETE | `/api/users/:id` | Deletes a user by ID             |
 
 > Note: API routes are handled in-memory for mock data. Real data is fetched from [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/users).
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request. For major changes, open an issue first to discuss what you would like to change.
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/my-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a pull request
