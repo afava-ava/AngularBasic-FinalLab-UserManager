@@ -26,18 +26,28 @@
       class="inline-flex py-1 w-24 h-24 rounded-full mx-auto mb-4"
     />
     <div class="inline-flex py-1">
-      <label class="font-semibold">First name:</label>
-      <p class="px-2">{{ userSignal()!.firstName }}</p>
+      <label class="font-semibold">Full name:</label>
+      <p class="px-2">{{ userSignal()!.name | fullName }}</p>
     </div>
-
     <div class="inline-flex py-1">
-      <label class="font-semibold">Last name:</label>
-      <p class="px-2">{{ userSignal()!.lastName }}</p>
+      <label class="font-semibold">User name:</label>
+      <p class="px-2">{{ userSignal()!.username }}</p>
     </div>
-
     <div class="inline-flex py-1">
       <label class="font-semibold">Email:</label>
       <p class="px-2">{{ userSignal()!.email }}</p>
+    </div>
+    <div class="inline-flex py-1">
+      <label class="font-semibold">Address:</label>
+      <p class="px-2">{{ fullAddressSignal() }}</p>
+    </div>
+    <div class="inline-flex py-1">
+      <label class="font-semibold">Phone:</label>
+      <p class="px-2">{{ userSignal()!.phone }}</p>
+    </div>
+    <div class="inline-flex py-1">
+      <label class="font-semibold">Company:</label>
+      <p class="px-2">{{ userSignal()!.company }}</p>
     </div>
   </div>
   } @else {

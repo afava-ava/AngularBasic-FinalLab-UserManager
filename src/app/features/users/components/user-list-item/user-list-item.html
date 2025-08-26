@@ -3,7 +3,7 @@
     routerLink="/users/{{ user.id }}"
     class="no-underline hover:underline font-semibold text-gray-800"
   >
-    {{ user.firstName + ';' + user.lastName | fullName }}
+    {{ user.name | fullName }}
   </a>
   @if(isMockVersion){
   <button

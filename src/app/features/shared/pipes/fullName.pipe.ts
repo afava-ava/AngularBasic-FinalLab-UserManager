@@ -10,17 +10,12 @@ export class FullNamePipe implements PipeTransform {
       return '';
     }
 
-    const splitFullname = value.split(';');
+    const splitFullname = value.split(' ');
 
-    const capitalizeSplitFullName = splitFullname.map(chunk => 
-      {
-        if (chunk.length > 0) {
-        return chunk.charAt(0).toUpperCase() + chunk.slice(1);
-        }
-        return '';
-      });
+    const capitalize = (chunk: string) => {
+      return chunk.charAt(0).toUpperCase() + chunk.slice(1);
+    };
 
-    return capitalizeSplitFullName.join(' ');
+    return `${capitalize(splitFullname[1])}, ${capitalize(splitFullname[0])}`;
   }
-
 }

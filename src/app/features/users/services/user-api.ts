@@ -11,9 +11,51 @@ import { UserSettings } from './user-settings';
 export class UserApi {
 
   private mockUsers: User[] = [
-    { id: 1, firstName: 'Juan', lastName: 'Pérez', email: 'juan.perez@example.com', avatar: 'https://i.pravatar.cc/150?img=1' },
-    { id: 2, firstName: 'Ana', lastName: 'López', email: 'ana.lopez@example.com', avatar: 'https://i.pravatar.cc/150?img=2' },
-    { id: 3, firstName: 'Luis', lastName: 'Martínez', email: 'luis.martinez@example.com', avatar: 'https://i.pravatar.cc/150?img=3' }
+    {
+      id: 1,
+      name: 'Juan Pérez',
+      username: 'juanp',
+      email: 'juan.perez@example.com',
+      phone: '555-1234',
+      address: {
+        street: 'Calle Falsa',
+        suite: 'Apt. 1',
+        city: 'Madrid',
+        zipCode: '28001'
+      },
+      company: 'Acme Inc.',
+      avatar: 'https://i.pravatar.cc/150?img=1'
+    },
+    {
+      id: 2,
+      name: 'Ana López',
+      username: 'analo',
+      email: 'ana.lopez@example.com',
+      phone: '555-5678',
+      address: {
+        street: 'Avenida Real',
+        suite: 'Suite 2',
+        city: 'Barcelona',
+        zipCode: '08002'
+      },
+      company: 'Globex Corporation',
+      avatar: 'https://i.pravatar.cc/150?img=2'
+    },
+    {
+      id: 3,
+      name: 'Luis Martínez',
+      username: 'luism',
+      email: 'luis.martinez@example.com',
+      phone: '555-9012',
+      address: {
+        street: 'Plaza Mayor',
+        suite: 'Piso 3',
+        city: 'Valencia',
+        zipCode: '46003'
+      },
+      company: 'Initech',
+      avatar: 'https://i.pravatar.cc/150?img=3'
+    }
   ];
 
   http = inject(HttpClient);
