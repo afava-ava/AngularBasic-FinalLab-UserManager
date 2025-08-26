@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { FullNamePipe } from "../../../shared/pipes/fullName.pipe";
+import { FullNamePipe } from "../../../shared/pipes/full-name.pipe";
 import { getFullAddress } from '../../models/user.utils';
 import { UserApi } from '../../services/user-api';
 

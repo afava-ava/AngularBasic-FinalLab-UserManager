@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FullNamePipe } from "../../../shared/pipes/fullName.pipe";
+import { FullNamePipe } from "../../../shared/pipes/full-name.pipe";
 import { User } from '../../models/user';
 
 @Component({
