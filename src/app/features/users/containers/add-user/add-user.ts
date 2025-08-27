@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddUserForm } from "../../components/add-user-form/add-user-form";
+import { User } from '../../models/user';
 import { UserApi } from '../../services/user-api';
 
 @Component({
@@ -14,7 +15,7 @@ export class AddUser {
   private userApi = inject(UserApi);
   private router = inject(Router);
 
-  onSave(user: any){
+  onSave(user: User){
     this.userApi.addUser(user);
     this.router.navigate(['/']);
   }

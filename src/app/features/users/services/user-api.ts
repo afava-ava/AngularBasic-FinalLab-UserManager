@@ -61,6 +61,10 @@ export class UserApi {
   http = inject(HttpClient);
   userSettings = inject(UserSettings);
 
+  getUsers(): Observable<User[]> {
+    return this.userSettings.useMock() ? of(this.getMockUsers()) : this.getRealUsers();
+  }
+
   getRealUsers(): Observable<User[]> {
     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
                 .pipe(
@@ -68,7 +72,7 @@ export class UserApi {
                 );
   }
 
-  getUsers(): User[] {
+  getMockUsers(): User[] {
     return this.mockUsers;
   }
 

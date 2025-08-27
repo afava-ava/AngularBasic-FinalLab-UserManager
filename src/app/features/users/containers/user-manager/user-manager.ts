@@ -19,13 +19,9 @@ export class UserManager {
   usersApi = inject(UserApi);
   userSettings = inject(UserSettings);
   
-  constructor(private userApi: UserApi) {
+  constructor() {
     effect(() => {
-      if (this.userSettings.useMock()) {
-        this.users.set(this.userApi.getUsers());
-      } else {
-        this.userApi.getRealUsers().subscribe(users => this.users.set(users));
-      }
+      this.refreshUsers();
     });
   }
 
@@ -34,12 +30,27 @@ export class UserManager {
 }
 
   onDeleteUser(id: number) {
-    this.usersApi.deleteUser(id).subscribe(success => {
-      if (success) {
-        alert("User deleted successfully ✅");
-      } else {
-        alert("❌ Failed to delete user");
+    const previousUsers = this.users();
+    this.users.update(users => users.filter(u => u.id !== id));
+    this.usersApi.deleteUser(id).subscribe({
+      next: success => {
+        if (success) {        
+          alert("User deleted successfully ✅");
+          this.refreshUsers();
+        } else {
+          this.users.set(previousUsers);
+          alert("❌ Failed to delete user");          
+        }
+      },
+      error: err => {
+        this.users.set(previousUsers);
+        alert("⚠️ Error deleting user");
       }
+      
     });
   } 
+
+  private refreshUsers(){
+    this.usersApi.getUsers().subscribe(users => this.users.set(users));
+  }
 }

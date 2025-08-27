@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { User } from '../../models/user';
@@ -9,7 +9,7 @@ import { User } from '../../models/user';
   templateUrl: './add-user-form.html'
 })
 export class AddUserForm {
-  @Output() save = new EventEmitter<any>();
+  save = output<User>();
 
   fb = inject(FormBuilder);
 

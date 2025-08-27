@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { User } from '../../models/user';
 import { UserListItem } from '../user-list-item/user-list-item';
@@ -9,10 +9,10 @@ import { UserListItem } from '../user-list-item/user-list-item';
   templateUrl: './user-list.html'
 })
 export class UserList {
-  @Input() users: User[] = [];
-  @Input() isMock = false;
-  @Output() onAddUser = new EventEmitter<any>();
-  @Output() deleteUser = new EventEmitter<number>();
+  users = input<User[]>([]);
+  isMock = input(false);
+  onAddUser = output<any>();
+  deleteUser = output<number>();
 
   onDeleteUser(id: number) {
     this.deleteUser.emit(id);

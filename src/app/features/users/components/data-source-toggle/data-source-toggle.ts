@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output, } from '@angular/core';
 
 @Component({
   selector: 'app-data-source-toggle',
@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './data-source-toggle.html'
 })
 export class DataSourceToggle {
-  @Input() checked = true; // default is mock
-  @Output() toggleChange = new EventEmitter<boolean>();
+  checked = input(true); // default is mock
+  toggleChange = output<boolean>();
 
   onToggle(event: Event) {
     const input = event.target as HTMLInputElement;
